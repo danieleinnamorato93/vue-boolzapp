@@ -7,7 +7,9 @@ img{
 max-width: 100%;
 }
 .user-infos img {
-    width: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
 
 body {
@@ -23,7 +25,7 @@ body {
 .row {
     display: flex;
    min-height: 80vh;  
-   width: 70%;
+   width: 90%;
     background-color: white;
     margin: 0 auto;
 }
@@ -44,12 +46,32 @@ body {
     min-height: 50px;
     background-color: #EAEAEA;
     display: flex;
-    justify-content: flex-start;
-    align-items:center;
-    text-align: start;
-    padding: 0 10px;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
   
 
+}
+
+.user-options{
+    display: flex;
+    gap: 3px;
+}
+.user-identity {
+    display: flex;
+    align-items: center;
+}
+.notify-circle {
+    height: 40px;
+    width: 40px;
+    background-color: white;
+    border-radius: 50%;
+    text-align: center;
+}
+.bi-bell-slash-fill{
+    line-height: 40px;
+    text-align: center;
 }
 .bell {
     width: 100%;
