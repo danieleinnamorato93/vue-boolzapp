@@ -49,11 +49,11 @@
                 </div>
 
                 <div class="contacts">
-                <div class="contact">
-                    <div class="contact-photo"><img src="" alt=""></div>
+                <div v-for="contact in contacts" class="contact">
+                    <div class="contact-photo"><img :src="contact.avatar" alt=""></div>
                     <div class="contact-info"> <h6>
                         <div class="contact-name">
-                           
+                           {{contact.name}}
                         </div>
                         <div class="last-time-message">
                             ultimo messaggio alle...
