@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="contacts">
-                <div v-for="contact in contacts" class="contact">
+                <div v-for="contact in contacts" :key="contact.name" class="contact" @click="selectedContact(contact)">
                     <div class="contact-photo"><img :src="contact.avatar" alt=""></div>
                     <div class="contact-info"> <h6>
                         <div class="contact-name">
@@ -70,9 +70,9 @@
             <div class="col-r">
                 <div class="user-chat">
                     <div class="user-info-wrapper">
-                        <div class="img-circle"><img src="img/avatar_1.png" alt=""></div>
+                        <div class="img-circle"><img :src="selectedContact?.avatar" alt=""></div>
                         <div class="name-latest-access">
-                        <h6>Michele</h6>
+                        <h6>{{selectedContact?.name || 'Seleziona un contatto'}}</h6>
                         <h6>ultimo accesso oggi alle 12.00</h6>
                     </div>
                 </div>
@@ -85,9 +85,10 @@
                     </div>
                   
                 <div class="conversation">
-                    <div class="message user-message">Hai portato a spasso il cane?</div>
-                <div class="message user-message">Ricordati di stendere i panni</div>
-                <div class="message friend-message">Tutto fatto!</div>
+                    <div v-for="message in filteredMessages" :key="message.date" :class="{'user-message': message.status ==='sent', 'friend-message' : message.status==='received'}">
+                        {{message.message}}
+                    </div>
+        
                 </div>
                 
                 <div class="bottom-bar">
