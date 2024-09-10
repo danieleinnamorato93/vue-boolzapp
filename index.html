@@ -38,11 +38,11 @@
                         <label class='search-label' for="search">
                             <i class="bi bi-search"></i> 
                         </label>
-                        <input id="contacts-filter" class="left-searchbar-input" placeholder="Cerca o inizia una nuova chat">
+                        <input v-model="searchQuery" id="contacts-filter" class="left-searchbar-input" placeholder="Cerca o inizia una nuova chat">
                     </div>
 
                     <div class="contacts">
-                        <div v-for="(contact, contactIndex) in contacts" @click="setActiveIndex(contactIndex)" class="contact">
+                        <div v-for="(contact, contactIndex) in filteredContacts" :key="contactIndex" @click="setActiveIndex(contactIndex)" class="contact">
                             <div class="contact-photo"><img :src="contact.avatar" alt=""></div>
                             <div class="contact-info">
                                 <h6>
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="col-r">
-                    <div class="user-chat">
+                    <div v-if="contacts[activeIndex]" class="user-chat">
                         <div class="user-info-wrapper">
                             <div class="img-circle"><img :src="contacts[activeIndex].avatar" :alt="contacts[activeIndex].name"></div>
                             <div class="name-latest-access">
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="conversation">
-                        <div v-for="messageObj in contacts[activeIndex].messages" 
+                        <div v-for="(messageObj, messageIndex) in contacts[activeIndex].messages" :key="messageIndex"
                              class="message" :class="(messageObj.status === 'sent') ? 'user-message' : 'friend-message'">
                             {{messageObj.message}}
                             <div class="time-message">{{messageObj.date}}</div>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="bottom-bar">
                         <div class="emoji"><i class="bi bi-emoji-smile"></i></div>
-                        <div class="message-bar">Scrivi messaggio...</div>
+                        <input v-model="newMessage" @keyup.enter="sendMessage" class="message-bar" placeholder="Scrivi messaggio...">
                         <div class="mic"><i class="bi bi-mic-fill"></i></div>
                     </div>
                 </div>
