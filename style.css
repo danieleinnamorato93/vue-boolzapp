@@ -14,22 +14,27 @@
   }
   
   .green-bar {
-    height: 60px;
+    height: 100px;
     background-color: #00BFA5;
     width: 100%;
-    position: fixed;
-    top: 0;
+    position: sticky;
+    
   
   }
   
   .row {
     display: flex;
-  max-width: 1200px; 
-   width: 90%;
+    flex-wrap: wrap;
+    max-width: 1200px; 
+    width: 90%;
     background-color: white;
     margin: 70px auto 0;
-   border-radius: 10px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    left: 30px;
+    top: -50px;
+
   }
   
   .col-l{
@@ -46,6 +51,7 @@
   .user-infos {
    
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0; 
@@ -60,6 +66,7 @@
   
   .user-options{
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
   }
   .user-identity {
@@ -69,6 +76,7 @@
   
   .notify {
     display: flex;
+    flex-wrap: wrap;
     padding: 10px;
     align-items: center;
     margin-top: 10px;
@@ -107,6 +115,7 @@
   
   .search-bar {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     margin: 15px 0;
     padding: 5px;
@@ -128,6 +137,7 @@
   border-bottom: 1px solid #ddd;
   cursor: pointer;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   
   }
@@ -146,6 +156,7 @@
   
   .contact-info {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   }
   .contact-name {
@@ -160,6 +171,7 @@
   .col-r{
     flex-basis:70%;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     padding: 15px;
     background-image: url('img/mine.png');
@@ -168,6 +180,7 @@
   .conversation {
    
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     flex: 1;
     padding : 10px;
@@ -178,12 +191,14 @@
     background-color: #EAEAEA;
     height: 50px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
   }
   .user-info-wrapper {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
   }
   .message {
@@ -209,6 +224,7 @@
   .bottom-bar {
     background-color: #F3EEEA;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     border-top: 1px solid #ddd;
     padding: 5px;
@@ -238,4 +254,9 @@
     display: flex;
     gap: 10px;
     
+  }
+  .time-message{
+    font-size: 8px;
+    color: darkgray;
+    text-align: right;
   }
