@@ -10,99 +10,84 @@
 <body>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <div id="app">
-    <header>
-        <div class="green-bar"></div>
-    </header>
-    <main>
-        <div class="row">
-            <div class="col-l">
-                <div class="user-infos">
-                    <div class="user-identity">
-                        <img src="img/avatar_io.png" alt="avatar">
-                        <span><h6>Sofia</h6></span>
-                    </div>
-                    <div class="user-options">
-                        <span><i class="bi bi-arrow-clockwise"></i></span>
-                        <span><i class="bi bi-chat-left"></i></span>
-                        <span><i class="bi bi-three-dots-vertical"></i></span>
-                        
-                    </div>
-                    
-               
-
-                </div>
-                <div class="notify">
-                    <div class="notify-circle"><i class="bi bi-bell-slash-fill"></i></div>
-                    <div class="notify-text">
-                        <span><h6>Ricevi notifiche di nuovi messaggi</h6></span>
-                       <a href="#"><h6>attiva notifiche sul desktop</h6></a>
-                    </div>
-                    
-                </div>
-                
-                <div class="search-bar">
-                    <label class='search-label' for="search">
-                        <i class="bi bi-search"></i> 
-                    </label>
-                    <input id="contacts-filter" class="left-searchbar-input" placeholder="Cerca o inizia una nuova chat">
-
-                </div>
-
-                <div class="contacts">
-                <div v-for="contact in contacts" :key="contact.name" class="contact" @click="selectedContact(contact)">
-                    <div class="contact-photo"><img :src="contact.avatar" alt=""></div>
-                    <div class="contact-info"> <h6>
-                        <div class="contact-name">
-                           {{contact.name}}
+        <header>
+            <div class="green-bar"></div>
+        </header>
+        <main>
+            <div class="row">
+                <div class="col-l">
+                    <div class="user-infos">
+                        <div class="user-identity">
+                            <img src="img/avatar_io.png" alt="avatar">
+                            <span><h6>Sofia</h6></span>
                         </div>
-                        <div class="last-time-message">
-                            ultimo messaggio alle...
-                        </div> </h6>
+                        <div class="user-options">
+                            <span><i class="bi bi-arrow-clockwise"></i></span>
+                            <span><i class="bi bi-chat-left"></i></span>
+                            <span><i class="bi bi-three-dots-vertical"></i></span>
+                        </div>
                     </div>
-                </div>
-              
-                </div>
-                
-             
+                    <div class="notify">
+                        <div class="notify-circle"><i class="bi bi-bell-slash-fill"></i></div>
+                        <div class="notify-text">
+                            <span><h6>Ricevi notifiche di nuovi messaggi</h6></span>
+                            <a href="#"><h6>attiva notifiche sul desktop</h6></a>
+                        </div>
+                    </div>
+                    <div class="search-bar">
+                        <label class='search-label' for="search">
+                            <i class="bi bi-search"></i> 
+                        </label>
+                        <input id="contacts-filter" class="left-searchbar-input" placeholder="Cerca o inizia una nuova chat">
+                    </div>
+
+                    <div class="contacts">
+                        <div v-for="(contact, contactIndex) in contacts" @click="setActiveIndex(contactIndex)" class="contact">
+                            <div class="contact-photo"><img :src="contact.avatar" alt=""></div>
+                            <div class="contact-info">
+                                <h6>
+                                    <div class="contact-name">
+                                        {{contact.name}}
+                                    </div>
+                                    <div class="last-time-message">
+                                        Ultimo messaggio alle...
+                                    </div>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-             
-            <div class="col-r">
-                <div class="user-chat">
-                    <div class="user-info-wrapper">
-                        <div class="img-circle"><img :src="selectedContact?.avatar" alt=""></div>
-                        <div class="name-latest-access">
-                        <h6>{{selectedContact?.name || 'Seleziona un contatto'}}</h6>
-                        <h6>ultimo accesso oggi alle 12.00</h6>
-                    </div>
-                </div>
-                   
+                <div class="col-r">
+                    <div class="user-chat">
+                        <div class="user-info-wrapper">
+                            <div class="img-circle"><img :src="contacts[activeIndex].avatar" :alt="contacts[activeIndex].name"></div>
+                            <div class="name-latest-access">
+                                <h6>{{contacts[activeIndex].name}}</h6>
+                                <h6>Ultimo accesso oggi alle 12.00</h6>
+                            </div>
+                        </div>
                         <div class="chat-options">
                             <span><i class="bi bi-search"></i></span>
                             <span><i class="bi bi-paperclip"></i></span>
                             <span><i class="bi bi-three-dots-vertical"></i></span>
                         </div>
                     </div>
-                  
-                <div class="conversation">
-                    <div v-for="message in filteredMessages" :key="message.date" :class="{'user-message': message.status ==='sent', 'friend-message' : message.status==='received'}">
-                        {{message.message}}
+                    <div class="conversation">
+                        <div v-for="messageObj in contacts[activeIndex].messages" 
+                             class="message" :class="(messageObj.status === 'sent') ? 'user-message' : 'friend-message'">
+                            {{messageObj.message}}
+                            <div class="time-message">{{messageObj.date}}</div>
+                        </div>
                     </div>
-        
+                    <div class="bottom-bar">
+                        <div class="emoji"><i class="bi bi-emoji-smile"></i></div>
+                        <div class="message-bar">Scrivi messaggio...</div>
+                        <div class="mic"><i class="bi bi-mic-fill"></i></div>
+                    </div>
                 </div>
-                
-                <div class="bottom-bar">
-                    <div class="emoji"><i class="bi bi-emoji-smile"></i></div>
-                    <div class="message-bar">Scrivi messaggio...</div>
-                    <div class="mic"><i class="bi bi-mic-fill"></i></div>
-                </div>
-               
             </div>
-        </div>
-
-            
-
-    </main>
+        </main>
     </div>
     <script src="script.js"></script>
 </body>
