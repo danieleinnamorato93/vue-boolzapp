@@ -192,7 +192,7 @@ createApp({
         });
         this.newMessage = '';
 
-        // Simulate receiving a response after 1 second
+        
         setTimeout(() => {
           this.contacts[this.activeIndex].messages.push({
             date: new Date().toLocaleString(),
